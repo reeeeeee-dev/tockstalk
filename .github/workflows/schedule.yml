@@ -16,6 +16,8 @@ jobs:
     name: Attempt Booking
     runs-on: ubuntu-latest
     environment: ${{ github.event.inputs.environment || 'sushi' }}
+    env:
+      CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
     steps:
       - uses: actions/checkout@v3
       - uses: Mercymeilya/last-workflow-status@v0.3.3
