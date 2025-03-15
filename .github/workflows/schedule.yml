@@ -4,14 +4,13 @@ on:
   workflow_dispatch:
     inputs:
       environment:
-        description: 'the config to use for the Cypress environment'
+        description: "the config to use for the Cypress environment"
         required: false
-        default: 'sushi'
+        default: "sushi"
   schedule:
-    - cron: "0/15 * * * *" # every 15 minutes
+    - cron: "0 11 15 * *"
 
 jobs:
-
   # attempts a booking on Tock, but only if it hasn't previously succeeded
   attempt_booking:
     name: Attempt Booking
@@ -36,4 +35,3 @@ jobs:
       - run: npm test
         if: steps.last_status.outputs.last_status != 'success'
       - uses: gautamkrishnar/keepalive-workflow@v1 # because github will kill this after 60 days
-    
